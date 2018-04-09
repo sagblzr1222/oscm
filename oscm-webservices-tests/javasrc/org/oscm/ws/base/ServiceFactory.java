@@ -344,7 +344,7 @@ public class ServiceFactory {
             props.put(Context.SECURITY_PRINCIPAL, userName);
             props.put(Context.SECURITY_CREDENTIALS, password);
             props.put(Context.INITIAL_CONTEXT_FACTORY,"org.apache.openejb.client.RemoteInitialContextFactory");
-            props.put("java.naming.provider.url", "http://127.0.0.1:8080/tomee/ejb");
+            //props.put("java.naming.provider.url", "http://127.0.0.1:8180/tomee/ejb");
             props.put("openejb.authentication.realmName", "bss-realm");
 
             Context context = new InitialContext(props);
