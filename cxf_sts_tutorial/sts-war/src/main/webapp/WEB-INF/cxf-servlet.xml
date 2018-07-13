@@ -31,7 +31,7 @@ http://www.springframework.org/schema/util/spring-util-2.0.xsd">
     </bean>
 
     <util:list id="wspAllowedEndpoints">
-        <value>http://localhost:8080/doubleit/services/doubleit.*</value>
+        <value>http://localhost:8080/doubleit/services/.*</value>
     </util:list>
 
     <bean id="mySTSProperties" class="org.apache.cxf.sts.StaticSTSProperties">
