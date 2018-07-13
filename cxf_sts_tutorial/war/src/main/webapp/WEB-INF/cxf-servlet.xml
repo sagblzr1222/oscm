@@ -8,30 +8,10 @@
          http://cxf.apache.org/schemas/jaxws.xsd">
 
 	<jaxws:endpoint id="doubleit" implementor="service.DoubleItPortTypeImpl"
-		address="/doubleit">
-
-		<jaxws:properties>
-			<!-- Use only if not using WS-SecureConversation -->
-			<entry key="ws-security.callback-handler" value="service.ServiceKeystorePasswordCallback" />
-			<entry key="ws-security.signature.properties" value="serviceKeystore.properties" />
-			<!-- Use only if using WS-SecureConversation -->
-			<!--entry key="ws-security.callback-handler.sct" value="service.ServiceKeystorePasswordCallback"/> 
-				<entry key="ws-security.signature.properties.sct" value="serviceKeystore.properties"/ -->
-		</jaxws:properties>
-	</jaxws:endpoint>
+		address="/doubleit" />
 
 	<jaxws:endpoint id="countingService" implementor="service.CountingServiceWS"
-		address="/CountingService">
-
-		<jaxws:properties>
-			<!-- Use only if not using WS-SecureConversation -->
-			<entry key="ws-security.callback-handler" value="service.ServiceKeystorePasswordCallback" />
-			<entry key="ws-security.signature.properties" value="serviceKeystore.properties" />
-			<!-- Use only if using WS-SecureConversation -->
-			<!--entry key="ws-security.callback-handler.sct" value="service.ServiceKeystorePasswordCallback"/> 
-				<entry key="ws-security.signature.properties.sct" value="serviceKeystore.properties"/ -->
-		</jaxws:properties>
-	</jaxws:endpoint>
+		address="/CountingService" />
 
 </beans>
 
