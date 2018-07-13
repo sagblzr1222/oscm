@@ -16,9 +16,6 @@
 		<dependency>
 			<groupId>org.gmazza.blog-samples.cxf-sts-tutorial</groupId>
 			<artifactId>cxf-sts-tutorial-service</artifactId>
-			<!-- Classifier below used with Maven Assembly Plugin to specify subset 
-				of above artifact needed. -->
-			<classifier>jaxws</classifier>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>

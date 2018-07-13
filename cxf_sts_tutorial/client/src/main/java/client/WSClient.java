@@ -9,7 +9,8 @@ import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Service;
 
 import org.apache.cxf.ws.security.SecurityConstants;
-import org.example.contract.doubleit.DoubleItPortType;
+
+import service.intf.DoubleItPortType;
 
 public class WSClient {
     
@@ -19,7 +20,7 @@ public class WSClient {
                 new URL("http://localhost:8080/doubleit/services/doubleit?wsdl"),
                 new QName("http://www.example.org/contract/DoubleIt", "DoubleItService"));
         
-        DoubleItPortType port = service.getPort(DoubleItPortType.class);
+        DoubleItPortType port = (DoubleItPortType) service.getPort(DoubleItPortType.class);
         
         Map<String, Object> context = ((BindingProvider) port).getRequestContext();
         context.put(SecurityConstants.CALLBACK_HANDLER, new ClientCallbackHandler());
