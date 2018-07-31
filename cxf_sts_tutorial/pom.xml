@@ -2,13 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.gmazza</groupId>
-		<artifactId>blog-samples</artifactId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
-	<groupId>org.gmazza.blog-samples.cxf-sts-tutorial</groupId>
+	<groupId>org.oscm.cxf-sts-tutorial</groupId>
 	<artifactId>cxf-sts-tutorial</artifactId>
+	<version>1.0</version>
 	<packaging>pom</packaging>
 	<name>Tutorial: CXF Security Token Service (STS)</name>
 	<description>
@@ -16,7 +12,6 @@
         to a CXF Security Token Service (STS) to obtain a security token to use in 
         subsequently making a call against a web service provider (WSP).
     </description>
-	<url>http://web-gmazza.rhcloud.com/blog/entry/cxf-sts-tutorial</url>
 
 	<modules>
 		<module>service</module>
@@ -24,6 +19,82 @@
 		<module>client</module>
 		<module>sts-war</module>
 	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<cxf.version>3.2.4</cxf.version>
+		<spring.version>5.0.5.RELEASE</spring.version>
+		<slf4j.version>1.7.25</slf4j.version>
+		<wsp.module.name>-- Web Service Provider</wsp.module.name>
+		<wspwar.module.name>-- Service WAR file</wspwar.module.name>
+		<stswar.module.name>-- STS WAR file</stswar.module.name>
+		<wsc.module.name>-- SOAP Client</wsc.module.name>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-ws-security</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf.services.sts</groupId>
+				<artifactId>cxf-services-sts-core</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-ws-mex</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-jdk14</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.tomee</groupId>
+			<artifactId>openejb-cxf</artifactId>
+			<version>7.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wss4j</groupId>
+			<artifactId>wss4j-ws-security-dom</artifactId>
+			<version>2.2.1</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -49,29 +120,13 @@
 						<path>/${project.build.finalName}</path>
 					</configuration>
 				</plugin>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.tomee</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomee</groupId>
-			<artifactId>openejb-cxf</artifactId>
-			<version>7.0.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.wss4j</groupId>
-			<artifactId>wss4j-ws-security-dom</artifactId>
-			<version>2.2.1</version>
-			<scope>runtime</scope>
-		</dependency>
-	</dependencies>
 
 </project>
 

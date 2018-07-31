@@ -66,7 +66,7 @@
 	<wsdl:service name="CountingService">
 		<wsdl:port binding="tns:CountingServiceSoapBinding" name="CountingServicePort">
 			<soap:address
-				location="http://localhost:8080/doubleit/services/CountingService" />
+				location="http://localhost:8080/cxf-webservices/services/CountingService" />
 		</wsdl:port>
 	</wsdl:service>
 	<wsp:Policy wsu:Id="OSCMBindingPolicy">
@@ -90,12 +90,12 @@
 										<sp:RequireInternalReference />
 									</wsp:Policy>
 									<sp:Issuer>
-										<wsaw:Address>http://localhost:8080/DoubleItSTS/STS</wsaw:Address>
+										<wsaw:Address>http://localhost:8080/cxf-sts/STS</wsaw:Address>
 										<wsaw:Metadata>
 											<wsx:Metadata>
 												<wsx:MetadataSection>
 													<wsx:MetadataReference>
-														<wsaw:Address>http://localhost:8080/DoubleItSTS/STS/mex</wsaw:Address>
+														<wsaw:Address>http://localhost:8080/cxf-sts/STS/mex</wsaw:Address>
 													</wsx:MetadataReference>
 												</wsx:MetadataSection>
 											</wsx:Metadata>

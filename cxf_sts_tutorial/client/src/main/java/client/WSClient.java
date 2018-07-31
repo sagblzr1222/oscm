@@ -18,7 +18,7 @@ public class WSClient {
     public static void main(String[] args) throws MalformedURLException {
 
         Service doubleItService = Service.create(
-                new URL("http://localhost:8080/doubleit/services/doubleit?wsdl"),
+                new URL("http://localhost:8080/cxf-webservices/services/doubleit?wsdl"),
                 new QName("http://www.example.org/contract/DoubleIt",
                         "DoubleItService"));
 
@@ -31,7 +31,7 @@ public class WSClient {
         System.out.println("DOUBLED " + toBeDoubled + " IS: " + doubleIt);
 
         Service countingService = Service.create(
-                new URL("http://localhost:8080/doubleit/services/CountingService?wsdl"),
+                new URL("http://localhost:8080/cxf-webservices/services/CountingService?wsdl"),
                 new QName("http://oscm.org/xsd", "CountingService"));
 
         CountingService count = (CountingService) countingService

@@ -65,7 +65,7 @@
 	</wsdl:binding>
 	<wsdl:service name="DoubleItService">
 		<wsdl:port binding="tns:DoubleItServiceSoapBinding" name="DoubleItPort">
-			<soap:address location="http://localhost:8080/doubleit/services/doubleit" />
+			<soap:address location="http://localhost:8080/cxf-webservices/services/doubleit" />
 		</wsdl:port>
 	</wsdl:service>
 	<wsp:Policy wsu:Id="DoubleItBindingPolicy">
@@ -88,12 +88,12 @@
                               <sp:RequireInternalReference/>
                            </wsp:Policy>
                            <sp:Issuer>
-                              <wsaw:Address>http://localhost:8080/DoubleItSTS/STS</wsaw:Address>
+                              <wsaw:Address>http://localhost:8080/cxf-sts/STS</wsaw:Address>
                               <wsaw:Metadata>
                                  <wsx:Metadata>
                                     <wsx:MetadataSection>
                                        <wsx:MetadataReference>
-                                          <wsaw:Address>http://localhost:8080/DoubleItSTS/STS/mex</wsaw:Address>
+                                          <wsaw:Address>http://localhost:8080/cxf-sts/STS/mex</wsaw:Address>
                                        </wsx:MetadataReference>
                                     </wsx:MetadataSection>
                                  </wsx:Metadata>

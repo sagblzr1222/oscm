@@ -1,19 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.gmazza.blog-samples.cxf-sts-tutorial</groupId>
-        <artifactId>cxf-sts-tutorial</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <packaging>jar</packaging>
-    <artifactId>cxf-sts-tutorial-service</artifactId>
-    <name>${wsp.module.name}</name>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.oscm.cxf-sts-tutorial</groupId>
+		<artifactId>cxf-sts-tutorial</artifactId>
+		<version>1.0</version>
+	</parent>
+	<packaging>jar</packaging>
+	<artifactId>cxf-sts-tutorial-service</artifactId>
+	<name>${wsp.module.name}</name>
 
-    <build>
-        <!-- Name of the generated WAR file -->
-        <finalName>doubleit</finalName>
-    </build>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.tomee</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
 </project>
