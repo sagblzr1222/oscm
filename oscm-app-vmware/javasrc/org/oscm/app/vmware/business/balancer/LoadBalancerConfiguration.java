@@ -8,12 +8,25 @@
 
 package org.oscm.app.vmware.business.balancer;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.FileAttribute;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.configuration2.HierarchicalConfiguration;
 import org.apache.commons.configuration2.XMLConfiguration;
+import org.apache.commons.configuration2.builder.FileBasedBuilderParametersImpl;
+import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
+import org.apache.commons.configuration2.builder.fluent.Parameters;
+import org.apache.commons.configuration2.io.FileHandler;
+import org.apache.commons.configuration2.io.FileLocator;
+import org.apache.commons.configuration2.io.FileLocator.FileLocatorBuilder;
 import org.apache.commons.configuration2.tree.ImmutableNode;
 import org.oscm.app.v2_0.exceptions.APPlatformException;
 import org.oscm.app.vmware.business.VMwareDatacenterInventory;
@@ -58,8 +71,16 @@ public class LoadBalancerConfiguration {
         hostList = new ArrayList<VMwareHost>();
         storageList = new ArrayList<VMwareStorage>();
         inventory.disableHostsAndStorages();
-        xmlConfig = new XMLConfiguration();
-        xmlConfig.read(new StringReader(xmlData));
+       
+        
+        final File file = createFile(xmlData);
+        
+        Parameters params = new Parameters();
+        FileBasedConfigurationBuilder<XMLConfiguration> fileBuilder =
+                new FileBasedConfigurationBuilder<>(XMLConfiguration.class)
+                .configure(params.fileBased().setFileName(file.getAbsolutePath()));
+
+        xmlConfig = fileBuilder.getConfiguration();
 
         List<HierarchicalConfiguration<ImmutableNode>> hosts = xmlConfig
                 .configurationsAt(ELEMENT_HOST);
@@ -105,6 +126,24 @@ public class LoadBalancerConfiguration {
         }
         balancer = parseBalancer(xmlConfig, HostBalancer.class,
                 EquipartitionHostBalancer.class, inventory);
+    }
+
+    /**
+     * @param xmlData
+     * @throws IOException
+     * @throws UnsupportedEncodingException
+     */
+    private File createFile(String xmlData)
+            throws IOException, UnsupportedEncodingException {
+        Path p = Files.createTempFile("vmware","props", null);
+        File tmp = p.toFile();
+        
+        byte[] b = xmlData.getBytes("UFT-8");
+                
+        Files.write(p, b, StandardOpenOption.APPEND );
+        
+        tmp.deleteOnExit();
+        return tmp;
     }
 
     @SuppressWarnings("unchecked")
