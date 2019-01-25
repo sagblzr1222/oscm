@@ -94,7 +94,7 @@ public class LoadBalancerConfigurationTest {
         final String selectedStorage = h.getNextStorage(properties).getName();
 
         // then
-        assertEquals("", vmdev0.getName());
+        assertEquals(vmdev0.getName(), selectedStorage);
 
     }
 
