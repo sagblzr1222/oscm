@@ -10,16 +10,12 @@ package org.oscm.app.vmware.business.balancer;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.oscm.app.v2_0.exceptions.APPlatformException;
 import org.oscm.app.vmware.business.VMwareDatacenterInventory;
@@ -32,7 +28,6 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 
 /**
  * XML parser for the vCenter configuration file
@@ -68,14 +63,7 @@ public class LoadBalancerConfiguration {
         storageList = new ArrayList<VMwareStorage>();
         inventory.disableHostsAndStorages();
 
-        final File file = createFile(xmlData);
-
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
-                .newInstance();
-        DocumentBuilder documentBuilder = documentBuilderFactory
-                .newDocumentBuilder();
-
-        Document document = documentBuilder.parse(file);
+        Document document = XMLHelper.convertToDocument(xmlData);
 
         NodeList hosts1 = document.getElementsByTagName(ELEMENT_HOST);
         NodeList balancers1 = document.getElementsByTagName(ELEMENT_BALANCER);
@@ -167,19 +155,6 @@ public class LoadBalancerConfiguration {
         Node storage = balancers1.item(0);
         balancer = parseBalancer(storage, HostBalancer.class,
                 EquipartitionHostBalancer.class, inventory);
-    }
-
-    private File createFile(String xmlData)
-            throws IOException, UnsupportedEncodingException {
-        Path p = Files.createTempFile("vmware", "props");
-        File tmp = p.toFile();
-
-        byte[] b = xmlData.getBytes("UTF-8");
-
-        Files.write(p, b, StandardOpenOption.CREATE);
-
-        tmp.deleteOnExit();
-        return tmp;
     }
 
     @SuppressWarnings("unchecked")

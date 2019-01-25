@@ -8,15 +8,13 @@
 
 package org.oscm.app.vmware.business.balancer;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
-
 import org.oscm.app.v2_0.data.ProvisioningSettings;
 import org.oscm.app.v2_0.data.Setting;
 import org.oscm.app.vmware.business.VMPropertyHandler;
