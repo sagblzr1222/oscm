@@ -1,11 +1,10 @@
 /*******************************************************************************
- *                                                                              
- *  Copyright FUJITSU LIMITED 2019                                           
- *                                                                                                                                 
- *  Creation Date: 24.01.2019                                                      
- *                                                                              
+ *
+ *  Copyright FUJITSU LIMITED 2018
+ *
+ *  Creation Date: 2016-05-24
+ *
  *******************************************************************************/
-
 package org.oscm.app.vmware.business.balancer;
 
 import java.io.StringReader;
