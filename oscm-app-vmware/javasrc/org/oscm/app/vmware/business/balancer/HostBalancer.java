@@ -40,7 +40,6 @@ public abstract class HostBalancer implements VMwareBalancer<VMwareHost> {
             NodeList hosts = xmlConfig.getOwnerDocument()
                     .getElementsByTagName("host");
 
-            /// NodeList hosts = xmlConfig.getAttributes().("hosts");
             String str = XMLHelper.getAttributeValue(xmlConfig, "hosts", "");
             List<String> hostList = Arrays.asList(str.split(","));
             if (hostList.size() > 0) {
