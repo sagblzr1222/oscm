@@ -100,7 +100,7 @@ public class HeadersTest {
                             || fileName.contains("import_en.css")) {
                         continue;
                     }
-                    checkFile(fileName, "*  Copyright FUJITSU LIMITED 2018");
+                    checkFile(fileName, "*  Copyright FUJITSU LIMITED 201");
                 } else if (fileName.toLowerCase().endsWith(".xml")
                         || fileName.toLowerCase().endsWith(".xhtml")) {
                     if (fileName
@@ -108,7 +108,7 @@ public class HeadersTest {
                         continue;
                     }
                     checkFile(fileName,
-                            "<!-- Copyright FUJITSU LIMITED 2018");
+                            "<!-- Copyright FUJITSU LIMITED 201");
                 } else if (fileName.toLowerCase().endsWith(".properties")) {
                     if (fileName.toLowerCase()
                             .contains("oscm-common-unittests"
@@ -116,7 +116,7 @@ public class HeadersTest {
                             || fileName.contains("wt.testInWork.properties")) {
                         continue;
                     }
-                    checkFile(fileName, "# Copyright FUJITSU LIMITED 2018");
+                    checkFile(fileName, "# Copyright FUJITSU LIMITED 201");
                 }
             }
         }
